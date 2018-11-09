@@ -1,0 +1,22 @@
+MONGODB
+
+show dbs
+show collections
+
+use randomdb
+
+db.people.insert([{nombre:"Ignacio",apellido:"Jelvez",edad:"22"},{nombre:"Alfredo",apellido:"Morales",edad:"24"},{nombre:"Pablo",apellido:"Saez",edad:"23"}])
+
+db.people.find({'nombre':'Pablo',}).pretty()
+
+db.people.update({ nombre: "Pablo" }, { nombre: "Yoshi", celular:"123456789" })
+db.people.update({ nombre: "Yoshi" }, {$set:{celular:"098123"}})
+db.people.update({ nombre: "Yoshi" }, {$set:{celular:"76543"}},{multi:true})
+db.people.update({ nombre: "Pablo"},{nombre: "Pablo",apellido: "Saez",edad: "23"},{upsert: true})
+db.people.update({ nombre: "Ignacio", apellido:"Fuentes"},{nombre:"Ignacio",apellido:"Fuentes",edad:"19"},{upsert:true})
+db.people.update({nombre: "Ignacio", apellido:"Fuentes"},{$set:{celular:"123"}})
+
+db.people.find({'nombre':'Ignacio',apellido:"Fuentes"}).pretty()
+
+db.people.remove({nombre:"Ignacio"})
+db.people.remove({nombre:"Ignacio",apellido:"Fuentes"})
